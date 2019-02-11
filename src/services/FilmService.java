@@ -10,11 +10,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import entites.Film;
+import exceptions.DuplicatedFilm;
 
 public class FilmService {
 	File file = new File("film");
 
-	public void addFilm(Film film) throws IOException {
+	public void addFilm(Film film) throws IOException , DuplicatedFilm {
+		if(findByID(film.getId())!= null) throw new DuplicatedFilm("The film with id = " + film.getId() + " is duplicated");
 		BufferedWriter fichier = new BufferedWriter(new FileWriter(file, true));
 		fichier.write(film.getId() + ":" + film.getTitle() + ":" + film.getRealisator() + ":" + film.getDescription());
 		fichier.newLine();

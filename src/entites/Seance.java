@@ -1,35 +1,76 @@
 package entites;
 
-import java.sql.Date;
+import exceptions.NoMorePlaceException;
+
+import java.util.Date;
 
 public class Seance {
-	private int idFilm;
-	private int idSalle;
-	private Date dateHeureDiff;
+    private Film film;
+    private Salle salle;
+    private Date dateHeureDiff;
+    private int availableNormal;
+    private int availableReduit;
+    private int availableGratuit;
 
-	public int getIdFilm() {
-		return idFilm;
-	}
+    public Seance(Film film, Salle salle, Date dateHeureDiff) {
+        this.film = film;
+        this.salle = salle;
+        this.dateHeureDiff = dateHeureDiff;
+        this.availableNormal = salle.getNbPlaceNormal();
+        this.availableReduit = salle.getNbPlaceReduit();
+        this.availableGratuit = salle.getNbPlaceGratuit();
+    }
 
-	public void setIdFilm(int idFilm) {
-		this.idFilm = idFilm;
-	}
+    public Film getFilm() {
+        return film;
+    }
 
-	public int getIdSalle() {
-		return idSalle;
-	}
+    public void setFilm(Film film) {
+        this.film = film;
+    }
 
-	public void setIdSalle(int idSalle) {
-		this.idSalle = idSalle;
-	}
+    public Salle getSalle() {
+        return salle;
+    }
 
-	public Date getDateHeureDiff() {
-		return dateHeureDiff;
-	}
+    public void setSalle(Salle salle) {
+        this.salle = salle;
+    }
 
-	public void setDateHeureDiff(Date dateHeureDiff) {
-		this.dateHeureDiff = dateHeureDiff;
-	}
+    public int getAvailableNormal() {
+        return availableNormal;
+    }
 
-	
+    public void setAvailableNormal(int availableNormal) {
+        this.availableNormal = availableNormal;
+    }
+
+    public int getAvailableReduit() {
+        return availableReduit;
+    }
+
+    public void setAvailableReduit(int availableReduit) {
+        this.availableReduit = availableReduit;
+    }
+
+    public int getAvailableGratuit() {
+        return availableGratuit;
+    }
+
+    public void setAvailableGratuit(int availableGratuit) {
+        this.availableGratuit = availableGratuit;
+    }
+
+    public Date getDateHeureDiff() {
+        return dateHeureDiff;
+    }
+
+    public void setDateHeureDiff(Date dateHeureDiff) {
+        this.dateHeureDiff = dateHeureDiff;
+    }
+
+
+
+
+
 }
