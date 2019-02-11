@@ -33,19 +33,26 @@ public class Main {
 		Film film = new Film(1,"789","aaa","azerty");
 		Salle salle = new Salle(1,20,15,5);
 		SalleService salleService = new SalleService();
-		Seance seance = new Seance(film,salle,new Date());
-		SeanceService seanceService = new SeanceService();
-		try {
-			seanceService.projectFilm(seance);
-		} catch (NoAvailableDate noAvailableDate) {
-			noAvailableDate.printStackTrace();
-		}
-
+//		Seance seance = new Seance(film,salle,new Date());
+//		SeanceService seanceService = new SeanceService();
+//		try {
+//			seanceService.projectFilm(seance);
+//		} catch (NoAvailableDate noAvailableDate) {
+//			noAvailableDate.printStackTrace();
+//		}
+//
 		try {
 			salleService.addSalle(salle);
 		} catch (DuplicatedSalle duplicatedSalle) {
 			duplicatedSalle.printStackTrace();
 		}
+
+		FilmService filmService = new FilmService();
+//		try {
+//			filmService.addFilm(film);
+//		} catch (DuplicatedFilm duplicatedFilm) {
+//			System.out.println(duplicatedFilm.getMessage());
+//		}
 
 
 	}
