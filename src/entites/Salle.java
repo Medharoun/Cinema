@@ -1,17 +1,27 @@
 package entites;
 
-import exceptions.NoMorePlaceException;
+import services.SalleService;
+
+import java.io.IOException;
 
 public class Salle {
+	private static int inc = 0;
 	private int id;
 	private int nbPlaceNormal;
 	private int nbPlaceReduit;
 	private int nbPlaceGratuit;
-
+	SalleService salleService = new SalleService();
 
 	public Salle(int id, int nbPlaceNomral, int nbPlaceReduit, int nbPlaceGratuit) {
 		this.id = id;
 		this.nbPlaceNormal = nbPlaceNomral;
+		this.nbPlaceReduit = nbPlaceReduit;
+		this.nbPlaceGratuit = nbPlaceGratuit;
+	}
+
+	public Salle(int nbPlaceNormal, int nbPlaceReduit, int nbPlaceGratuit) {
+		this.id = ++inc;
+		this.nbPlaceNormal = nbPlaceNormal;
 		this.nbPlaceReduit = nbPlaceReduit;
 		this.nbPlaceGratuit = nbPlaceGratuit;
 	}

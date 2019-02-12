@@ -19,9 +19,8 @@ public class FilmService {
     File file = new File("film");
 
     public void addFilm(Film film) throws IOException {
-
         BufferedWriter fichier = new BufferedWriter(new FileWriter(file, true));
-        fichier.write(findAll().size()+1 + ":" + film.getTitle() + ":" + film.getRealisator() + ":" + film.getDescription() + ":" + film.getDuration());
+        fichier.write(film.getId() + ":" + film.getTitle() + ":" + film.getRealisator() + ":" + film.getDescription() + ":" + film.getDuration());
         fichier.newLine();
         System.out.println("succes!");
         fichier.close();
@@ -72,7 +71,7 @@ public class FilmService {
         Film film;
         while ((line = reader.readLine()) != null) {
             String[] tab = line.split(":");
-            film = new Film(tab[1], tab[2], tab[3] ,Integer.parseInt(tab[4]));
+            film = new Film(Integer.parseInt(tab[0]),tab[1], tab[2], tab[3] ,Integer.parseInt(tab[4]));
             films.add(film);
         }
         reader.close();

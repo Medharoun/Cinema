@@ -10,8 +10,7 @@ import java.util.List;
 public class SalleService {
     File file = new File("salle");
 
-    public void addSalle(Salle salle) throws IOException , DuplicatedSalleException {
-        if(findByID(salle.getId())!= null) throw new DuplicatedSalleException("This room is already saved");
+    public void addSalle(Salle salle) throws IOException {
         BufferedWriter fichier = new BufferedWriter(new FileWriter(file, true));
         fichier.write(salle.getId() + ":" + salle.getNbPlaceNormal()+ ":" + salle.getNbPlaceReduit() + ":" + salle.getNbPlaceGratuit());
         fichier.newLine();

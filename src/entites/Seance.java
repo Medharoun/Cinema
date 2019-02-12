@@ -22,6 +22,26 @@ public class Seance {
         this.availableGratuit = salle.getNbPlaceGratuit();
     }
 
+    public Seance(int num, Film film, Salle salle, Date dateHeureDiff) {
+        this.num = num;
+        this.film = film;
+        this.salle = salle;
+        this.dateHeureDiff = dateHeureDiff;
+        this.availableNormal = salle.getNbPlaceNormal();
+        this.availableReduit = salle.getNbPlaceReduit();
+        this.availableGratuit = salle.getNbPlaceGratuit();
+    }
+
+    public Seance(int num, Film film, Salle salle, Date dateHeureDiff, int availableNormal, int availableReduit, int availableGratuit) {
+        this.num = num;
+        this.film = film;
+        this.salle = salle;
+        this.dateHeureDiff = dateHeureDiff;
+        this.availableNormal = availableNormal;
+        this.availableReduit = availableReduit;
+        this.availableGratuit = availableGratuit;
+    }
+
     public int getNum() {
         return num;
     }
@@ -76,14 +96,5 @@ public class Seance {
 
     public void setDateHeureDiff(Date dateHeureDiff) {
         this.dateHeureDiff = dateHeureDiff;
-    }
-
-    public Seance(int num, Film film, Salle salle, Date dateHeureDiff) {
-        this.num = num;
-        this.film = film;
-        this.salle = salle;
-        this.availableNormal = salle.getNbPlaceNormal();
-        this.availableReduit = salle.getNbPlaceReduit();
-        this.availableGratuit = salle.getNbPlaceGratuit();
     }
 }

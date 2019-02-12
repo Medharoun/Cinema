@@ -1,14 +1,16 @@
 package entites;
 
+import services.FilmService;
+
 import java.time.Duration;
 
 public class Film {
+	private static int inc = 0;
 	private int id;
 	private String title;
 	private String realisator;
 	private String description;
 	private int duration;
-
 	public int getDuration() {
 		return duration;
 	}
@@ -51,6 +53,15 @@ public class Film {
 
 
 	public Film(String title, String realisator, String description, int duration) {
+		this.id = ++inc;
+		this.title = title;
+		this.realisator = realisator;
+		this.description = description;
+		this.duration = duration;
+	}
+
+	public Film(int id, String title, String realisator, String description, int duration) {
+		this.id = id;
 		this.title = title;
 		this.realisator = realisator;
 		this.description = description;
