@@ -1,10 +1,21 @@
 package entites;
 
+import java.time.Duration;
+
 public class Film {
 	private int id;
 	private String title;
 	private String realisator;
 	private String description;
+	private Duration duration;
+
+	public Duration getDuration() {
+		return duration;
+	}
+
+	public void setDuration(Duration duration) {
+		this.duration = duration;
+	}
 
 	public int getId() {
 		return id;
@@ -38,18 +49,22 @@ public class Film {
 		this.description = description;
 	}
 
-	public Film(int id, String title, String realisator, String description) {
-		super();
+	public Film(int id, String title, String realisator, String description, Duration duration) {
 		this.id = id;
 		this.title = title;
 		this.realisator = realisator;
 		this.description = description;
+		this.duration = duration;
 	}
 
 	@Override
 	public String toString() {
-		return "Film [id=" + id + ", title=" + title + ", realisator=" + realisator + ", description=" + description
-				+ "]";
+		return "Film{" +
+				"id=" + id +
+				", title='" + title + '\'' +
+				", realisator='" + realisator + '\'' +
+				", description='" + description + '\'' +
+				", duration=" + duration +
+				'}';
 	}
-
 }

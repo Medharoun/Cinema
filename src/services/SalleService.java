@@ -1,7 +1,7 @@
 package services;
 
 import entites.Salle;
-import exceptions.DuplicatedSalle;
+import exceptions.DuplicatedSalleException;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -10,8 +10,8 @@ import java.util.List;
 public class SalleService {
     File file = new File("salle");
 
-    public void addSalle(Salle salle) throws IOException , DuplicatedSalle {
-        if(findByID(salle.getId())!= null) throw new DuplicatedSalle("This room is already saved");
+    public void addSalle(Salle salle) throws IOException , DuplicatedSalleException {
+        if(findByID(salle.getId())!= null) throw new DuplicatedSalleException("This room is already saved");
         BufferedWriter fichier = new BufferedWriter(new FileWriter(file, true));
         fichier.write(salle.getId() + ":" + salle.getNbPlaceNormal()+ ":" + salle.getNbPlaceReduit() + ":" + salle.getNbPlaceGratuit());
         fichier.newLine();
