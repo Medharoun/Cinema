@@ -5,6 +5,7 @@ import exceptions.NoMorePlaceException;
 import java.util.Date;
 
 public class Seance {
+    private int num;
     private Film film;
     private Salle salle;
     private Date dateHeureDiff;
@@ -19,6 +20,14 @@ public class Seance {
         this.availableNormal = salle.getNbPlaceNormal();
         this.availableReduit = salle.getNbPlaceReduit();
         this.availableGratuit = salle.getNbPlaceGratuit();
+    }
+
+    public int getNum() {
+        return num;
+    }
+
+    public void setNum(int num) {
+        this.num = num;
     }
 
     public Film getFilm() {
@@ -69,8 +78,12 @@ public class Seance {
         this.dateHeureDiff = dateHeureDiff;
     }
 
-
-
-
-
+    public Seance(int num, Film film, Salle salle, Date dateHeureDiff) {
+        this.num = num;
+        this.film = film;
+        this.salle = salle;
+        this.availableNormal = salle.getNbPlaceNormal();
+        this.availableReduit = salle.getNbPlaceReduit();
+        this.availableGratuit = salle.getNbPlaceGratuit();
+    }
 }

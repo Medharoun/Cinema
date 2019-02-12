@@ -9,6 +9,7 @@ import exceptions.NoMorePlaceException;
 import java.io.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.Duration;
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Date;
@@ -20,15 +21,17 @@ public class SeanceService {
     SalleService salleService = new SalleService();
     SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
 
-    public void projectFilm(Seance seance) throws NoAvailableRoomException, IOException, ParseException{
+    public void projectFilm(Seance seance) throws NoAvailableRoomException, IOException, ParseException {
+
         List<Seance> seances = getAllSeances();
-        for(Seance seance1 : seances){
-
-
-
+        for (Seance seance1 : seances) {
+            if ((seance.getDateHeureDiff().after(seance1.getDateHeureDiff())) && ((seance.getDateHeureDiff().before(Date.from(seance1.getDateHeureDiff().toInstant().plus(Duration.ofMinutes(seance1.getFilm().getDuration()))))) && (seance.getSalle().getId() == seance1.getSalle().getId())))
+                throw new NoAvailableRoomException("Room not available");
         }
+
+
         BufferedWriter fichier = new BufferedWriter(new FileWriter(file, true));
-        fichier.write(seance.getFilm().getId() + "," + seance.getSalle().getId() + "," + sdf.format(seance.getDateHeureDiff()));
+        fichier.write(getAllSeances().size() + 1 + "," + seance.getFilm().getId() + "," + seance.getSalle().getId() + "," + sdf.format(seance.getDateHeureDiff()));
         fichier.newLine();
         System.out.println("succes!");
         fichier.close();
@@ -41,9 +44,9 @@ public class SeanceService {
         Seance seance;
         while ((line = reader.readLine()) != null) {
             String[] tab = line.split(",");
-            Film film = filmService.findByID(Integer.parseInt(tab[0]));
-            Salle salle = salleService.findByID(Integer.parseInt(tab[1]));
-            seance = new Seance(film, salle, sdf.parse(tab[2]));
+            Film film = filmService.findByID(Integer.parseInt(tab[1]));
+            Salle salle = salleService.findByID(Integer.parseInt(tab[2]));
+            seance = new Seance(Integer.parseInt(tab[0]),film, salle, sdf.parse(tab[3]));
             seances.add(seance);
         }
         reader.close();

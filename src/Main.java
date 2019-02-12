@@ -1,7 +1,9 @@
 import entites.Film;
 import entites.Salle;
 import entites.Seance;
+import exceptions.DuplicatedFilmException;
 import exceptions.NoAvailableRoomException;
+import services.FilmService;
 import services.SalleService;
 import services.SeanceService;
 
@@ -32,17 +34,23 @@ public class Main {
 //		}while (choix <= 0 || choix >= 5);
 
 		/**##############################*/
-		Film film = new Film(1,"789","aaa","azerty", Duration.ofMinutes(120));
+		Film film = new Film("789","aaa","azerty", 120);
 		Salle salle = new Salle(1,20,15,5);
 		SalleService salleService = new SalleService();
 		Seance seance = new Seance(film,salle,sdf.parse(sdf.format(new Date())));
-		Seance seance1 = new Seance(film,salle,Date.from(sdf.parse(sdf.format(new Date())).toInstant().plus(Duration.ofMinutes(2))));
+		Seance seance1 = new Seance(film,salle,Date.from(sdf.parse(sdf.format(new Date())).toInstant().plus(Duration.ofMinutes(200))));
 		SeanceService seanceService = new SeanceService();
+		FilmService filmService = new FilmService();
+//		try {
+//			filmService.addFilm(film);
+//		} catch (DuplicatedFilmException duplicatedFilm) {
+//			System.out.println(duplicatedFilm.getMessage());
+//		}
 		try {
-			seanceService.projectFilm(seance);
+//			seanceService.projectFilm(seance);
 			seanceService.projectFilm(seance1);
 		} catch (NoAvailableRoomException noAvailableDate) {
-			noAvailableDate.printStackTrace();
+			System.out.println(noAvailableDate.getMessage());
 		} catch (ParseException e) {
             e.printStackTrace();
         }
@@ -58,12 +66,7 @@ public class Main {
 //			duplicatedSalle.printStackTrace();
 //		}
 //
-//		FilmService filmService = new FilmService();
-//		try {
-//			filmService.addFilm(film);
-//		} catch (DuplicatedFilmException duplicatedFilm) {
-//			System.out.println(duplicatedFilm.getMessage());
-//		}
+
 	}
 
 }
