@@ -10,7 +10,6 @@ public class Salle {
 	private int nbPlaceNormal;
 	private int nbPlaceReduit;
 	private int nbPlaceGratuit;
-	SalleService salleService = new SalleService();
 
 	public Salle(int id, int nbPlaceNomral, int nbPlaceReduit, int nbPlaceGratuit) {
 		this.id = id;
@@ -58,6 +57,13 @@ public class Salle {
 		this.nbPlaceGratuit = nbPlaceGratuit;
 	}
 
-
-
+	@Override
+	public String toString() {
+		return "Salle{" +
+				"id=" + id +
+				", nbPlaceNormal=" + nbPlaceNormal +
+				", nbPlaceReduit=" + nbPlaceReduit +
+				", nbPlaceGratuit=" + nbPlaceGratuit +
+				'}';
+	}
 }
