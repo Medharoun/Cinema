@@ -12,9 +12,8 @@ public class SalleService {
 
     public void addSalle(Salle salle) throws IOException {
         BufferedWriter fichier = new BufferedWriter(new FileWriter(file, true));
-        fichier.write(salle.getId() + ":" + salle.getNbPlaceNormal()+ ":" + salle.getNbPlaceReduit() + ":" + salle.getNbPlaceGratuit());
+        fichier.write(salle.getId() + ";" + salle.getNbPlaceNormal()+ ";" + salle.getNbPlaceReduit() + ";" + salle.getNbPlaceGratuit());
         fichier.newLine();
-        System.out.println("succes!");
         fichier.close();
     }
 
@@ -24,12 +23,28 @@ public class SalleService {
         String line;
         StringBuffer inputBuffer = new StringBuffer();
         while ((line = reader.readLine()) != null) {
-            String[] tab = line.split(":");
+            String[] tab = line.split(";");
             if (salle.getId() != Integer.parseInt(tab[0])) {
                 inputBuffer.append(line);
                 inputBuffer.append('\n');
             } else {
-                inputBuffer.append(salle.getId() + ":" + salle.getNbPlaceNormal()+ ":" + salle.getNbPlaceReduit() + ":" + salle.getNbPlaceGratuit());
+                inputBuffer.append(salle.getId() + ";" + salle.getNbPlaceNormal()+ ";" + salle.getNbPlaceReduit() + ";" + salle.getNbPlaceGratuit());
+                inputBuffer.append('\n');
+            }
+        }
+        reader.close();
+        BufferedWriter fichier = new BufferedWriter(new FileWriter(file, false));
+        fichier.write(inputBuffer.toString());
+        fichier.close();
+    }
+    public void deleteSalle(int id) throws IOException {
+        BufferedReader reader = new BufferedReader(new FileReader(file));
+        String line;
+        StringBuffer inputBuffer = new StringBuffer();
+        while ((line = reader.readLine()) != null) {
+            String[] tab = line.split(";");
+            if (id != Integer.parseInt(tab[0])) {
+                inputBuffer.append(line);
                 inputBuffer.append('\n');
             }
         }
@@ -45,7 +60,7 @@ public class SalleService {
         String line;
         Salle salle;
         while ((line = reader.readLine()) != null) {
-            String[] tab = line.split(":");
+            String[] tab = line.split(";");
             salle = new Salle(Integer.parseInt(tab[0]), Integer.parseInt(tab[1]), Integer.parseInt(tab[2]), Integer.parseInt(tab[3]));
             salles.add(salle);
         }

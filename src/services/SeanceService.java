@@ -30,7 +30,6 @@ public class SeanceService {
         BufferedWriter fichier = new BufferedWriter(new FileWriter(file, true));
         fichier.write(getAllSeances().size() + 1 + "," + seance.getFilm().getId() + "," + seance.getSalle().getId() + "," + sdf.format(seance.getDateHeureDiff()) + "," + seance.getAvailableNormal() + "," + seance.getAvailableReduit() + "," + seance.getAvailableGratuit());
         fichier.newLine();
-        System.out.println("succes!");
         fichier.close();
     }
 

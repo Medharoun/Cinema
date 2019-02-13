@@ -22,7 +22,6 @@ public class FilmService {
         BufferedWriter fichier = new BufferedWriter(new FileWriter(file, true));
         fichier.write(film.getId() + ":" + film.getTitle() + ":" + film.getRealisator() + ":" + film.getDescription() + ":" + film.getDuration());
         fichier.newLine();
-        System.out.println("succes!");
         fichier.close();
     }
 
