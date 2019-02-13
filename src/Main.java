@@ -163,9 +163,9 @@ public class Main {
                     switch (intChoixFilm) {
                         case 1: {
                             System.out.println(" Ajouter un film ");
-                            String title;
-                            String[] input;
                             Scanner scFilm = new Scanner(System.in);
+
+                            String title;
 
                             do {
                                 System.out.println("Titre de film: ");
@@ -196,17 +196,25 @@ public class Main {
                         }
                         case 2: {
                             System.out.println(" Supprimer un film \n");
-
                             System.out.println(" Liste des film \n");
                             List<Film> films = filmService.findAll();
                             for (Film f : films) {
                                 System.out.println(f.toString());
                             }
                             String idFilmS;
+                            boolean isNull = false;
+                            Film film;
                             do {
-                                System.out.println("numero de film a supprimer: ");
-                                idFilmS = sc.next();
-                            } while (idFilmS.length() == 0 || !idFilmS.matches("\\d") || Integer.parseInt(idFilmS) <= 0);
+                                do {
+                                    System.out.println("numero de film a supprimer: ");
+                                    idFilmS = sc.next();
+                                } while (idFilmS.length() == 0 || !idFilmS.matches("\\d") || Integer.parseInt(idFilmS) <= 0);
+                                film = filmService.findByID(Integer.parseInt(idFilmS));
+                                if (film == null) {
+                                    System.out.println("Film de numero " + idFilmS + " est introuvable");
+                                    isNull = true;
+                                }
+                            } while (!isNull);
                             filmService.deleteFilm(Integer.parseInt(idFilmS));
                             System.out.println("succes !");
                             break;
@@ -236,21 +244,23 @@ public class Main {
                             String nRealisator;
                             String nDescription;
                             String nDuree;
+                            Scanner scFilm1 = new Scanner(System.in);
+
                             do {
                                 System.out.println("Nouveau titre[ " + film.getTitle() + " ]: ");
-                                nTitle = sc.next();
+                                nTitle = scFilm1.nextLine();
                             } while (nTitle.length() == 0 || !nTitle.matches("\\w[\\w|\\s]*"));
                             do {
                                 System.out.println("Nouveau realisateur[ " + film.getRealisator() + " ]: ");
-                                nRealisator = sc.next();
+                                nRealisator = scFilm1.nextLine();
                             } while (nRealisator.length() == 0 || !nRealisator.matches("\\w[\\w|\\s]*"));
                             do {
                                 System.out.println("Nouvelle description[ " + film.getDescription() + " ]: ");
-                                nDescription = sc.next();
+                                nDescription = scFilm1.nextLine();
                             } while (nDescription.length() == 0 || !nDescription.matches("\\w[\\w|\\s]*"));
                             do {
                                 System.out.println("Nouvelle duree du film (en minute)[ " + film.getDuration() + " ]: ");
-                                nDuree = sc.next();
+                                nDuree = scFilm1.nextLine();
                             } while (nDuree.length() == 0 || !nDuree.matches("[\\d][\\d]*") || Integer.parseInt(nDuree) <= 0);
                             Film film1 = new Film(Integer.parseInt(idFilmM), nTitle, nRealisator, nDescription, Integer.parseInt(nDuree));
                             filmService.updateFilm(film1);
@@ -278,31 +288,54 @@ public class Main {
 
                     System.out.println("1 - Ajouter une seance ");
                     System.out.println("2 - Supprimer une seance ");
-                    System.out.println("3 - Modifier un seance ");
-                    System.out.println("4 - Afficher tout les film");
-                    System.out.println("5 - Retour au menu pricipal ");
-                    String choixFilm;
+                    System.out.println("3 - Modifier une seance ");
+                    System.out.println("4 - Reserver des places ");
+                    System.out.println("5 - Afficher les seances ");
+                    System.out.println("6 - Retour au menu pricipal ");
+                    String choixSeances;
                     do {
                         System.out.println("Votre choix : ");
-                        choixFilm = sc.next();
-                    } while (!choixFilm.matches("[\\d]") || Integer.parseInt(choixFilm) <= 0 || Integer.parseInt(choixFilm) >= 6 );
-                    int intChoixFilm = Integer.parseInt(choixFilm);
-                    switch (intChoixFilm) {
+                        choixSeances = sc.next();
+                    } while (!choixSeances.matches("[\\d]") || Integer.parseInt(choixSeances) <= 0 || Integer.parseInt(choixSeances) >= 7 );
+                    int intChoixSeances = Integer.parseInt(choixSeances);
+                    switch (intChoixSeances) {
                         case 1: {
-                            System.out.println(" Ajouter un film ");
-                            String title;
-                            String[] input;
-                            Scanner scFilm = new Scanner(System.in);
+                            System.out.println(" Ajouter une seance ");
+                            String numFilm;
+                            Scanner scSeance = new Scanner(System.in);
+                            boolean filmIsNull = false;
+                            for(Film film : filmService.findAll()){
+                                System.out.println(film.toString());
+                            }
+                            do {
+                                do {
+                                    System.out.println("num  de film: ");
+                                    numFilm = scSeance.nextLine();
+                                } while (numFilm.matches("\\d*"));
+                                Film film = filmService.findByID(Integer.parseInt(numFilm));
+                                if(film == null)
+                                    filmIsNull=true;
+                            }while (filmIsNull);
 
+                            for(Salle salle : salleService.findAll()){
+                                System.out.println(salle.toString());
+                            }
+                            String numSalle;
+                            boolean salleIsNull = false;
                             do {
-                                System.out.println("Titre de film: ");
-                                title = scFilm.nextLine();
-                            } while (title.matches("\\d[\\w|\\s]*"));
-                            String realisator;
+                                do {
+                                    System.out.println("numero de salle: ");
+                                    numSalle = scSeance.nextLine();
+                                } while (numSalle.matches("\\d*"));
+                                Salle salle = salleService.findByID(Integer.parseInt(numSalle));
+                                if(salle == null)
+                                    salleIsNull=true;
+                            }while (salleIsNull);
+                            String date;
                             do {
-                                System.out.println("Realisateur de film: ");
-                                realisator = scFilm.nextLine();
-                            } while (realisator.matches("\\d[\\w|\\s]*"));
+                                System.out.println("Date de projection: ");
+                                date = scSeance.nextLine();
+                            } while (date.matches("\\d\\d\\d\\d-\\d\\d-\\d\\d\\s\\d\\d:\\d\\d:\\d\\d"));
                             String description;
                             do {
                                 System.out.println("Description de film: ");

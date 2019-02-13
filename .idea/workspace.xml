@@ -3,9 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="567f7d32-d36e-4249-ab73-5a90527d5764" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/salle" beforeDir="false" afterPath="$PROJECT_DIR$/salle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/entites/Salle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entites/Salle.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -36,10 +34,22 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/entites/Seance.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="90">
+              <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
-              <caret line="280" column="56" selection-start-line="280" selection-start-column="56" selection-end-line="280" selection-end-column="56" />
+            <state relative-caret-position="405">
+              <caret line="337" column="100" selection-start-line="337" selection-start-column="100" selection-end-line="337" selection-end-column="100" />
               <folding>
                 <element signature="e#1172#6841#1" />
                 <element signature="e#6750#13891#1" />
@@ -81,11 +91,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/services/SeanceService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="60">
-              <caret line="32" selection-start-line="32" selection-end-line="32" />
+            <state relative-caret-position="190">
+              <caret line="23" column="33" selection-start-line="23" selection-start-column="33" selection-end-line="23" selection-end-column="33" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -100,11 +110,6 @@
               <caret line="44" column="46" lean-forward="true" selection-start-line="44" selection-start-column="46" selection-end-line="44" selection-end-column="46" />
             </state>
           </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/seance">
-          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
@@ -135,6 +140,7 @@
       <find>:</find>
       <find>succes!</find>
       <find>2</find>
+      <find>sc</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -210,7 +216,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1550074584073" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1550078740292" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
@@ -258,7 +264,7 @@
       <workItem from="1549841918215" duration="143000" />
       <workItem from="1549878985652" duration="13714000" />
       <workItem from="1549960040008" duration="18512000" />
-      <workItem from="1550044382964" duration="22025000" />
+      <workItem from="1550044382964" duration="26179000" />
     </task>
     <task id="LOCAL-00001" summary="some changes">
       <created>1549898514991</created>
@@ -309,16 +315,24 @@
       <option name="project" value="LOCAL" />
       <updated>1550051471128</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Menu Film Terminé!">
+      <created>1550074597829</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1550074597829</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="54394000" />
+    <option name="totallyTimeSpent" value="58548000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="56" y="-11" width="1625" height="1062" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25998732" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25998732" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -329,7 +343,7 @@
       <window_info anchor="bottom" id="Messages" order="0" weight="0.32901832" />
       <window_info anchor="bottom" id="Message" order="1" />
       <window_info anchor="bottom" id="Find" order="2" weight="0.32901832" />
-      <window_info active="true" anchor="bottom" id="Run" order="3" visible="true" weight="0.32901832" />
+      <window_info anchor="bottom" id="Run" order="3" visible="true" weight="0.32901832" />
       <window_info anchor="bottom" id="Debug" order="4" weight="0.399137" />
       <window_info anchor="bottom" id="Cvs" order="5" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="6" weight="0.4" />
@@ -357,7 +371,8 @@
     <MESSAGE value="some changes" />
     <MESSAGE value="mazel ken l main" />
     <MESSAGE value="Menu Salle Terminé!" />
-    <option name="LAST_COMMIT_MESSAGE" value="Menu Salle Terminé!" />
+    <MESSAGE value="Menu Film Terminé!" />
+    <option name="LAST_COMMIT_MESSAGE" value="Menu Film Terminé!" />
   </component>
   <component name="debuggerHistoryManager">
     <expressions id="evaluateExpression">
@@ -437,16 +452,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/entites/Seance.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/exceptions/NoMorePlaceException.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="150">
@@ -501,13 +506,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/services/FilmService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="465">
-          <caret line="44" column="46" lean-forward="true" selection-start-line="44" selection-start-column="46" selection-end-line="44" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/film">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -518,26 +516,43 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Main.java">
+    <entry file="file://$PROJECT_DIR$/seance">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/services/FilmService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="280" column="56" selection-start-line="280" selection-start-column="56" selection-end-line="280" selection-end-column="56" />
+        <state relative-caret-position="465">
+          <caret line="44" column="46" lean-forward="true" selection-start-line="44" selection-start-column="46" selection-end-line="44" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/entites/Seance.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
           <folding>
-            <element signature="e#1172#6841#1" />
-            <element signature="e#6750#13891#1" />
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/seance">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/services/SeanceService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="32" selection-start-line="32" selection-end-line="32" />
+        <state relative-caret-position="190">
+          <caret line="23" column="33" selection-start-line="23" selection-start-column="33" selection-end-line="23" selection-end-column="33" />
           <folding>
             <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="405">
+          <caret line="337" column="100" selection-start-line="337" selection-start-column="100" selection-end-line="337" selection-end-column="100" />
+          <folding>
+            <element signature="e#1172#6841#1" />
+            <element signature="e#6750#13891#1" />
           </folding>
         </state>
       </provider>
