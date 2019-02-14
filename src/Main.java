@@ -29,7 +29,7 @@ public class Main {
             do {
                 System.out.println("Votre choix : ");
                 choix = sc.next();
-            } while (!choix.matches("[\\d]") || Integer.parseInt(choix) <= 0 || Integer.parseInt(choix) >= 6);
+            } while (!choix.matches("(\\d)") || Integer.parseInt(choix) <= 0 || Integer.parseInt(choix) >= 6);
             int intChoix = Integer.parseInt(choix);
             switch (intChoix) {
                 case 1: {
@@ -44,7 +44,7 @@ public class Main {
                     do {
                         System.out.println("Votre choix : ");
                         choixSalle = sc.next();
-                    } while (!choixSalle.matches("[\\d]") || Integer.parseInt(choixSalle) <= 0 || Integer.parseInt(choixSalle) >= 6);
+                    } while (!choixSalle.matches("(\\d)") || Integer.parseInt(choixSalle) <= 0 || Integer.parseInt(choixSalle) >= 6);
                     int intChoixSalle = Integer.parseInt(choixSalle);
                     switch (intChoixSalle) {
                         case 1: {
@@ -53,17 +53,17 @@ public class Main {
                             do {
                                 System.out.println("Nombre de place normales: ");
                                 nbPlaceN = sc.next();
-                            } while (!nbPlaceN.matches("[\\d][\\d]*") || Integer.parseInt(nbPlaceN) <= 0);
+                            } while (!nbPlaceN.matches("\\d(\\d)*") || Integer.parseInt(nbPlaceN) <= 0);
                             String nbPlaceR;
                             do {
                                 System.out.println("Nombre de place reduites: ");
                                 nbPlaceR = sc.next();
-                            } while (!nbPlaceR.matches("[\\d][\\d]*") || Integer.parseInt(nbPlaceR) <= 0);
+                            } while (!nbPlaceR.matches("\\d(\\d)*") || Integer.parseInt(nbPlaceR) <= 0);
                             String nbPlaceG;
                             do {
                                 System.out.println("Nombre de place gratuites: ");
                                 nbPlaceG = sc.next();
-                            } while (!nbPlaceG.matches("[\\d][\\d]*") || Integer.parseInt(nbPlaceG) <= 0);
+                            } while (!nbPlaceG.matches("\\d(\\d)*") || Integer.parseInt(nbPlaceG) <= 0);
                             int idSalle = 1;
                             if (salleService.findAll().size() > 0)
                                 idSalle = salleService.findAll().get(salleService.findAll().size() - 1).getId() + 1;
@@ -74,18 +74,28 @@ public class Main {
                         }
                         case 2: {
                             System.out.println(" Supprimer une salle \n");
-
                             System.out.println(" Liste des salles \n");
                             List<Salle> salles = salleService.findAll();
                             for (Salle s : salles) {
                                 System.out.println(s.toString());
                             }
                             String idSalleS;
+                            boolean isNull = false;
                             do {
-                                System.out.println("numero de salle a supprimer: ");
-                                idSalleS = sc.next();
-                            } while (!idSalleS.matches("[\\d][\\d]*") || Integer.parseInt(idSalleS) <= 0);
+                                do {
+                                    System.out.println("numero de salle a supprimer: ");
+                                    idSalleS = sc.next();
+                                } while (!idSalleS.matches("\\d(\\d)*") || Integer.parseInt(idSalleS) <= 0);
+                                Salle salle = salleService.findByID(Integer.parseInt(idSalleS));
+                                if (salle == null) {
+                                    System.out.println("Salle de numero " + idSalleS + " est introuvable \n");
+                                    isNull = true;
+                                }
+                            } while (isNull);
+
+
                             salleService.delete(Integer.parseInt(idSalleS));
+
                             break;
                         }
                         case 3: {
@@ -101,7 +111,7 @@ public class Main {
                                 do {
                                     System.out.println("numero de salle a modifier: ");
                                     idSalleM = sc.next();
-                                } while (!idSalleM.matches("\\d+") || Integer.parseInt(idSalleM) <= 0);
+                                } while (!idSalleM.matches("\\d(\\d)*") || Integer.parseInt(idSalleM) <= 0);
                                 Salle salle = salleService.findByID(Integer.parseInt(idSalleM));
                                 if (salle == null) {
                                     System.out.println("Salle de numero " + idSalleM + " est introuvable \n");
@@ -112,17 +122,17 @@ public class Main {
                             String nr;
                             String ng;
                             do {
-                                System.out.println("Nouveau nombre de places normales ["+salleService.findByID(Integer.parseInt(idSalleM)).getNbPlaceNormal()+"]");
+                                System.out.println("Nouveau nombre de places normales [" + salleService.findByID(Integer.parseInt(idSalleM)).getNbPlaceNormal() + "]");
                                 nn = sc.next();
-                            } while (!nn.matches("[\\d][\\d]*") || Integer.parseInt(nn) <= 0);
+                            } while (!nn.matches("\\d(\\d)*") || Integer.parseInt(nn) <= 0);
                             do {
-                                System.out.println("Nouveau nombre de places reduites ["+salleService.findByID(Integer.parseInt(idSalleM)).getNbPlaceReduit()+"]");
+                                System.out.println("Nouveau nombre de places reduites [" + salleService.findByID(Integer.parseInt(idSalleM)).getNbPlaceReduit() + "]");
                                 nr = sc.next();
-                            } while (!nr.matches("[\\d][\\d]*") || Integer.parseInt(nr) <= 0);
+                            } while (!nr.matches("\\d(\\d)*") || Integer.parseInt(nr) <= 0);
                             do {
-                                System.out.println("Nouveau nombre de places gratuits ["+salleService.findByID(Integer.parseInt(idSalleM)).getNbPlaceGratuit()+"]");
+                                System.out.println("Nouveau nombre de places gratuits [" + salleService.findByID(Integer.parseInt(idSalleM)).getNbPlaceGratuit() + "]");
                                 ng = sc.next();
-                            } while (!ng.matches("[\\d][\\d]*") || Integer.parseInt(ng) <= 0);
+                            } while (!ng.matches("\\d(\\d)*") || Integer.parseInt(ng) <= 0);
                             Salle salle = new Salle(Integer.parseInt(idSalleM), Integer.parseInt(nn), Integer.parseInt(nr), Integer.parseInt(ng));
                             salleService.update(salle);
                             System.out.println("succes !");
@@ -156,7 +166,7 @@ public class Main {
                     do {
                         System.out.println("Votre choix : ");
                         choixFilm = sc.next();
-                    } while (!choixFilm.matches("[\\d]") || Integer.parseInt(choixFilm) <= 0 || Integer.parseInt(choixFilm) >= 6);
+                    } while (!choixFilm.matches("\\d") || Integer.parseInt(choixFilm) <= 0 || Integer.parseInt(choixFilm) >= 6);
                     int intChoixFilm = Integer.parseInt(choixFilm);
                     switch (intChoixFilm) {
                         case 1: {
@@ -168,22 +178,22 @@ public class Main {
                             do {
                                 System.out.println("Titre de film: ");
                                 title = scFilm.nextLine();
-                            } while (title.matches("\\d[\\w|\\s]*"));
+                            } while (!title.matches("\\w(\\w|\\s)*"));
                             String realisator;
                             do {
                                 System.out.println("Realisateur de film: ");
                                 realisator = scFilm.nextLine();
-                            } while (realisator.matches("\\d[\\w|\\s]*"));
+                            } while (!realisator.matches("\\w(\\w|\\s)*"));
                             String description;
                             do {
                                 System.out.println("Description de film: ");
                                 description = scFilm.nextLine();
-                            } while (description.matches("\\d[\\w|\\s]*"));
+                            } while (!description.matches("\\w(\\w|\\s)*"));
                             String duration;
                             do {
                                 System.out.println("Duree du film (en minute): ");
                                 duration = scFilm.next();
-                            } while (!duration.matches("[\\d][\\d]*") || Integer.parseInt(duration) <= 0);
+                            } while (!duration.matches("\\d(\\d)*") || Integer.parseInt(duration) <= 0);
                             int idFilm = 1;
                             if (filmService.findAll().size() > 0)
                                 idFilm = filmService.findAll().get(filmService.findAll().size() - 1).getId() + 1;
@@ -212,9 +222,14 @@ public class Main {
                                     System.out.println("Film de numero " + idFilmS + " est introuvable");
                                     isNull = true;
                                 }
-                            } while (!isNull);
-                            filmService.delete(Integer.parseInt(idFilmS));
-                            System.out.println("succes !");
+                            } while (isNull);
+                            List<Seance> seances = seanceService.getSeancesByFilm(filmService.findByID(Integer.parseInt(idFilmS)));
+                            if (seances.size() > 0) {
+                                System.out.println("Safe delete !!! You have to delete all his seances before");
+                            } else {
+                                filmService.delete(Integer.parseInt(idFilmS));
+                                System.out.println("succes !");
+                            }
                             break;
                         }
                         case 3: {
@@ -237,7 +252,7 @@ public class Main {
                                     System.out.println("Film de numero " + idFilmM + " est introuvable");
                                     isNull = true;
                                 }
-                            } while (!isNull);
+                            } while (isNull);
                             String nTitle;
                             String nRealisator;
                             String nDescription;
@@ -247,19 +262,19 @@ public class Main {
                             do {
                                 System.out.println("Nouveau titre[ " + film.getTitle() + " ]: ");
                                 nTitle = scFilm1.nextLine();
-                            } while (nTitle.length() == 0 || !nTitle.matches("\\w[\\w|\\s]*"));
+                            } while (nTitle.length() == 0 || !nTitle.matches("\\w(\\w|\\s)*"));
                             do {
                                 System.out.println("Nouveau realisateur[ " + film.getRealisator() + " ]: ");
                                 nRealisator = scFilm1.nextLine();
-                            } while (nRealisator.length() == 0 || !nRealisator.matches("\\w[\\w|\\s]*"));
+                            } while (nRealisator.length() == 0 || !nRealisator.matches("\\w(\\w|\\s)*"));
                             do {
                                 System.out.println("Nouvelle description[ " + film.getDescription() + " ]: ");
                                 nDescription = scFilm1.nextLine();
-                            } while (nDescription.length() == 0 || !nDescription.matches("\\w[\\w|\\s]*"));
+                            } while (nDescription.length() == 0 || !nDescription.matches("\\w(\\w|\\s)*"));
                             do {
                                 System.out.println("Nouvelle duree du film (en minute)[ " + film.getDuration() + " ]: ");
                                 nDuree = scFilm1.nextLine();
-                            } while (nDuree.length() == 0 || !nDuree.matches("[\\d][\\d]*") || Integer.parseInt(nDuree) <= 0);
+                            } while (nDuree.length() == 0 || !nDuree.matches("\\d(\\d)*") || Integer.parseInt(nDuree) <= 0);
                             Film film1 = new Film(Integer.parseInt(idFilmM), nTitle, nRealisator, nDescription, Integer.parseInt(nDuree));
                             filmService.update(film1);
                             System.out.println("succes !");
@@ -293,7 +308,7 @@ public class Main {
                     do {
                         System.out.println("Votre choix : ");
                         choixSeances = sc.next();
-                    } while (!choixSeances.matches("[\\d]") || Integer.parseInt(choixSeances) <= 0 || Integer.parseInt(choixSeances) >= 7);
+                    } while (!choixSeances.matches("\\d") || Integer.parseInt(choixSeances) <= 0 || Integer.parseInt(choixSeances) >= 7);
                     int intChoixSeances = Integer.parseInt(choixSeances);
                     switch (intChoixSeances) {
                         case 1: {
@@ -312,7 +327,7 @@ public class Main {
                                 do {
                                     System.out.println("num  de film: ");
                                     numFilm = scSeance.nextLine();
-                                } while (!numFilm.matches("\\d*"));
+                                } while (!numFilm.matches("\\d(\\d)*"));
                                 Film film = filmService.findByID(Integer.parseInt(numFilm));
                                 if (film == null)
                                     filmIsNull = true;
@@ -327,7 +342,7 @@ public class Main {
                                 do {
                                     System.out.println("numero de salle: ");
                                     numSalle = scSeance.nextLine();
-                                } while (!numSalle.matches("\\d*"));
+                                } while (!numSalle.matches("\\d(\\d)*"));
                                 Salle salle = salleService.findByID(Integer.parseInt(numSalle));
                                 if (salle == null)
                                     salleIsNull = true;
@@ -372,7 +387,7 @@ public class Main {
                             do {
                                 System.out.println("numero de seance : ");
                                 idSeance = scSeance.next();
-                            } while (!idSeance.matches("\\d\\d*") || Integer.parseInt(idSeance) <= 0);
+                            } while (!idSeance.matches("\\d(\\d)*") || Integer.parseInt(idSeance) <= 0);
                             System.out.println(seanceService.findByID(Integer.parseInt(idSeance)) + "\n");
                             System.out.println("1 - Reserver une place normale");
                             System.out.println("2 - Reserver une place reduite");
@@ -430,7 +445,6 @@ public class Main {
                     System.out.println(seanceService.chiffreDaffaire() + "DT");
                     break;
                 }
-
                 case 5: {
                     break;
                 }
