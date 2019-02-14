@@ -1,7 +1,6 @@
 package services;
 
 import entites.Salle;
-import exceptions.DuplicatedSalleException;
 
 import java.io.*;
 import java.util.ArrayList;

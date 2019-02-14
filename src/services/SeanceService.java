@@ -3,7 +3,6 @@ package services;
 import entites.Film;
 import entites.Salle;
 import entites.Seance;
-import exceptions.NoAvailableRoomException;
 import exceptions.NoMorePlaceException;
 
 import java.io.*;
@@ -25,11 +24,11 @@ public class SeanceService extends Service<Seance>{
 
 
     @Override
-    public void add(Seance seance) throws IOException, ParseException, NoAvailableRoomException {
+    public void add(Seance seance) throws IOException, ParseException, NoMorePlaceException {
         List<Seance> seances = findAll();
         for (Seance seance1 : seances) {
             if ((seance.getDateHeureDiff().after(seance1.getDateHeureDiff())) && ((seance.getDateHeureDiff().before(Date.from(seance1.getDateHeureDiff().toInstant().plus(Duration.ofMinutes(seance1.getFilm().getDuration()))))) && (seance.getSalle().getId() == seance1.getSalle().getId())))
-                throw new NoAvailableRoomException("Room not available");
+                throw new NoMorePlaceException("Room not available");
         }
         BufferedWriter fichier = new BufferedWriter(new FileWriter(file, true));
         fichier.write(findAll().size() + 1 + "," + seance.getFilm().getId() + "," + seance.getSalle().getId() + "," + sdf.format(seance.getDateHeureDiff()) + "," + seance.getAvailableNormal() + "," + seance.getAvailableReduit() + "," + seance.getAvailableGratuit());

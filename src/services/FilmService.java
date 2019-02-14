@@ -1,10 +1,8 @@
 package services;
 
 import entites.Film;
-import exceptions.NoAvailableRoomException;
 
 import java.io.*;
-import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 

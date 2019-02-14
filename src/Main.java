@@ -1,7 +1,7 @@
 import entites.Film;
 import entites.Salle;
 import entites.Seance;
-import exceptions.NoAvailableRoomException;
+import exceptions.NoMorePlaceException;
 import services.FilmService;
 import services.SalleService;
 import services.SeanceService;
@@ -15,7 +15,7 @@ import java.util.Scanner;
 
 public class Main {
 
-    public static void main(String[] args) throws IOException, NoAvailableRoomException, ParseException {
+    public static void main(String[] args) throws IOException, NoMorePlaceException, ParseException {
         // TODO Auto-generated method stub
         FilmService filmService = new FilmService();
         SalleService salleService = new SalleService();
