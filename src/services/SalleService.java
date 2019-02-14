@@ -7,18 +7,19 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SalleService {
+public class SalleService extends Service<Salle> {
     File file = new File("salle");
 
-    public void addSalle(Salle salle) throws IOException {
+    @Override
+    public void add(Salle salle) throws IOException {
         BufferedWriter fichier = new BufferedWriter(new FileWriter(file, true));
         fichier.write(salle.getId() + ";" + salle.getNbPlaceNormal()+ ";" + salle.getNbPlaceReduit() + ";" + salle.getNbPlaceGratuit());
         fichier.newLine();
         fichier.close();
     }
 
-
-    public void updateSalle(Salle salle) throws IOException {
+    @Override
+    public void update(Salle salle) throws IOException {
         BufferedReader reader = new BufferedReader(new FileReader(file));
         String line;
         StringBuffer inputBuffer = new StringBuffer();
@@ -37,7 +38,7 @@ public class SalleService {
         fichier.write(inputBuffer.toString());
         fichier.close();
     }
-    public void deleteSalle(int id) throws IOException {
+    public void delete(int id) throws IOException {
         BufferedReader reader = new BufferedReader(new FileReader(file));
         String line;
         StringBuffer inputBuffer = new StringBuffer();
@@ -53,7 +54,7 @@ public class SalleService {
         fichier.write(inputBuffer.toString());
         fichier.close();
     }
-
+    @Override
     public List<Salle> findAll() throws IOException{
         BufferedReader reader = new BufferedReader(new FileReader(file));
         List<Salle> salles = new ArrayList<Salle>();
@@ -68,6 +69,8 @@ public class SalleService {
         return salles;
     }
 
+
+    @Override
     public Salle findByID(int id) throws IOException{
         List<Salle> salles = findAll();
         Salle salle = null;

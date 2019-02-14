@@ -1,7 +1,5 @@
 package entites;
 
-import exceptions.NoMorePlaceException;
-
 import java.util.Date;
 
 public class Seance {
@@ -96,5 +94,18 @@ public class Seance {
 
     public void setDateHeureDiff(Date dateHeureDiff) {
         this.dateHeureDiff = dateHeureDiff;
+    }
+
+    @Override
+    public String toString() {
+        return "Seance{" +
+                "num=" + num +
+                ", film=" + film +
+                ", salle=" + salle +
+                ", dateHeureDiff=" + dateHeureDiff +
+                ", availableNormal=" + availableNormal +
+                ", availableReduit=" + availableReduit +
+                ", availableGratuit=" + availableGratuit +
+                '}';
     }
 }

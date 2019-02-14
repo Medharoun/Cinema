@@ -1,31 +1,27 @@
 package services;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.time.Duration;
-import java.time.Instant;
-import java.time.temporal.TemporalUnit;
+import entites.Film;
+import exceptions.NoAvailableRoomException;
+
+import java.io.*;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
-import entites.Film;
-import exceptions.DuplicatedFilmException;
-
-public class FilmService {
+public class FilmService extends Service<Film> {
     File file = new File("film");
 
-    public void addFilm(Film film) throws IOException {
+
+    @Override
+    public void add(Film film) throws IOException {
         BufferedWriter fichier = new BufferedWriter(new FileWriter(file, true));
         fichier.write(film.getId() + ":" + film.getTitle() + ":" + film.getRealisator() + ":" + film.getDescription() + ":" + film.getDuration());
         fichier.newLine();
         fichier.close();
     }
 
-    public void updateFilm(Film film) throws IOException {
+    @Override
+    public void update(Film film) throws IOException {
         BufferedReader reader = new BufferedReader(new FileReader(file));
         String line;
         StringBuffer inputBuffer = new StringBuffer();
@@ -46,7 +42,8 @@ public class FilmService {
         fichier.close();
     }
 
-    public void deleteFilm(int id) throws IOException {
+    @Override
+    public void delete(int id) throws IOException {
         BufferedReader reader = new BufferedReader(new FileReader(file));
         String line;
         StringBuffer inputBuffer = new StringBuffer();
@@ -63,6 +60,7 @@ public class FilmService {
         fichier.close();
     }
 
+    @Override
     public List<Film> findAll() throws IOException {
         BufferedReader reader = new BufferedReader(new FileReader(file));
         List<Film> films = new ArrayList<Film>();
@@ -70,25 +68,14 @@ public class FilmService {
         Film film;
         while ((line = reader.readLine()) != null) {
             String[] tab = line.split(":");
-            film = new Film(Integer.parseInt(tab[0]),tab[1], tab[2], tab[3] ,Integer.parseInt(tab[4]));
+            film = new Film(Integer.parseInt(tab[0]), tab[1], tab[2], tab[3], Integer.parseInt(tab[4]));
             films.add(film);
         }
         reader.close();
         return films;
     }
 
-
-    public Film findByTitle(String title) throws IOException {
-        List<Film> films = findAll();
-        Film film = null;
-        for (Film f : films) {
-            if (title == f.getTitle()) {
-                film = f;
-            }
-        }
-        return film;
-    }
-
+    @Override
     public Film findByID(int id) throws IOException {
         List<Film> films = findAll();
         Film film = null;
@@ -99,5 +86,6 @@ public class FilmService {
         }
         return film;
     }
+
 
 }
